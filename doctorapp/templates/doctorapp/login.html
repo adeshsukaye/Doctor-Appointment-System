@@ -1,0 +1,65 @@
+{% extends 'doctorapp/base.html' %}
+{% block content %}
+	
+
+		    
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-md-4">
+                        
+                        <span id="message"></span>
+                        <div class="card">
+                            <div class="card-header">Login</div>
+
+                            <div class="card-body">
+                                
+                                {% if msg %}
+                                <div style="color: green;"></div>
+                                <h3>{{msg}}</h3>
+                                {% endif %}
+
+                                {% if err %}
+                                <div style="color: red;"></div>
+                                <h3>{{err}}</h3>
+                                    
+                                {% endif %}
+                                    
+                                <form method="post" id="patient_login_form" autocomplete="off" action="{% url 'login' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group ">
+                                        <label>Select Role <span class="text-danger">*</span></label>
+                                        <select name="role" id="" class="form-control">
+                                            <option >-------------- SELECT ROLE --------------</option>
+                                            <option >Doctor</option>
+                                            <option >Patient</option>
+                                          
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input type="text" name="email" id="patient_email_address" class="form-control" required autofocus data-parsley-type="email" data-parsley-trigger="keyup" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" name="password" id="patient_password" autocomplete="current-password" class="form-control" required  data-parsley-trigger="keyup" />
+                                        <i class="far fa-eye" id="togglePassword" style="position: relative; left: 275px; top: -29px; cursor: pointer;"></i>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <input type="hidden" name="action" value="patient_login" />
+                                        <input type="submit" name="patient_login_button" id="patient_login_button" class="btn btn-primary" value="Login" />
+                                    </div>
+            
+                                    <div class="form-group text-center">
+                                        <p><a href="{% url 'registerpage' %}">Register</a></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div
+            scr
+
+			{% endblock content %}
+	    
+	

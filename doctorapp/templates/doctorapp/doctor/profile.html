@@ -1,0 +1,140 @@
+{% extends 'doctorapp/doctor/base.html' %}
+
+{% block content %}
+
+
+
+
+<div class="container text-black">
+	<div class="row justify-content-md-center">
+		<div class="col col-md-8">
+			<span id="message"></span>
+			<div class="card">
+				<div class="card-header">Doctor Profile <span style="padding-left:315px;" class="col-md-6 text-right "
+						align="right">
+						<a href="{% url 'updatedoctorprofile' pk=request.session.id %}"
+							class=" btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+					</span></div>
+
+
+
+				<div class="card-body">
+					<form method="post" id="patient_register_form" action="#">
+						{% csrf_token %}
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>First Name<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_first_name" id="patient_first_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.FirstName}}" readonly />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Last Name<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_last_name" id="patient_last_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.LastName}}" readonly />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Email Address<span class="text-danger">*</span></label>
+							<input type="email" name="doctor_email_address" id="patient_email_address"
+								class="form-control" required data-parsley-type="email" data-parsley-trigger="keyup"
+								value="{{user.Email}}" readonly />
+						</div>
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Contact No.<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_phone_no" id="patient_phone_no" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Contact}}" readonly />
+								</div>
+							</div>
+							<div class="col-md-6">
+
+								<div class="form-group">
+									<label>Gender<span class="text-danger">*</span></label>
+
+									<input type="text" name="doctor_gender" id="doctor_gender" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Gender}}" readonly />
+
+
+
+								</div>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Date of Birth<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_date_of_birth" id="patient_date_of_birth"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.DateOfBirth}}" readonly />
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Maritial Status<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_maritial_status" id="doctor_maritial_status"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.Maritial_Status}}" readonly />
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Doctor Degree<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_degree" id="doctor_degree" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Degree}}" readonly />
+
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Doctor Expert In<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_expert_in" id="doctor_expert_in"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.ExpertIn}}" readonly />
+
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Complete Address<span class="text-danger">*</span></label>
+
+							<input type="text" name="doctor_address" id="doctor_address" class="form-control" required
+								data-parsley-trigger="keyup" value="{{doctor.Address}}" readonly />
+						</div>
+						<div class="form-group">
+							<label>Password<span class="text-danger">*</span></label>
+							<input type="password" name="doctor_password" id="patient_password" class="form-control"
+								required data-parsley-trigger="keyup" value="{{user.Password}}" readonly />
+							<i class="far fa-eye" id="togglePassword"
+								style="position: relative; left: 610px; top: -29px; cursor: pointer;"></i>
+
+						</div>
+
+
+
+
+					</form>
+				</div>
+			</div>
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}

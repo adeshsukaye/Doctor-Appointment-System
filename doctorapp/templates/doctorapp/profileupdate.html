@@ -1,0 +1,154 @@
+{% extends 'doctorapp/base2.html' %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-6">
+					Profile Details
+				</div>
+				<!-- <div class="col-md-6 text-right">
+							<a href="profile.php?action=edit" class="btn btn-secondary btn-sm">S</a>
+						</div> -->
+			</div>
+		</div>
+		<form action="{% url 'updatepatient' pk=request.session.id %}" method="post">
+			{% csrf_token %}
+
+
+
+
+			<div class="card-body">
+				<table class="table table-striped">
+
+					<tr>
+						<th class="text-right" width="40%">Patient First Name:</th>
+						<td>
+							<input type="text" name="firstname" id="patient_first_name" class="form-control"
+								required data-parsley-trigger="keyup" value="{{patient.FirstName}}">
+
+						</td>
+					</tr>
+
+					<tr>
+						<th class="text-right" width="40%">Patient Last Name:</th>
+						<td>
+							<input type="text" name="lastname" id="patient_first_name" class="form-control"
+								required data-parsley-trigger="keyup" value=" {{patient.LastName}}  ">
+
+						</td>
+					</tr>
+
+					<tr>
+						<th class="text-right" width="40%">Email Address:</th>
+						<td>
+							<input type="text" name="email" id="patient_email_address"
+								class="form-control" required data-parsley-trigger="keyup"
+								value="{{user.Email}}  ">
+
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="40%">Password:</th>
+						<td>
+							<input type="text" name="password" id="patient_password" class="form-control"
+								required data-parsley-trigger="keyup" value="{{user.Password}}">
+
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="40%">Address:</th>
+						<td>
+							<input type="text" name="address" id="patient_address" class="form-control" required
+								data-parsley-trigger="keyup" value="{{patient.Address}}">
+
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="40%">Contact No.:</th>
+						<td>
+							<input type="text" name="contact" id="patient_phone_no" class="form-control"
+								required data-parsley-trigger="keyup" value="{{patient.Contact}}">
+
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="40%">Date of Birth:</th>
+						<td>
+							<!-- <input type="text" name="patient_date_of_birth" id="patient_date_of_birth" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Patient_date_Of_Birth}}" > -->
+							<input type="date" name="dob" id="patient_date_of_birth"
+								class="form-control" required data-parsley-trigger="keyup"
+								value="{{patient.DateOfBirth}}">
+
+						</td>
+					</tr>
+					<tr>
+						<th class="text-right" width="40%">Gender:</th>
+						<td>
+							
+							{% if patient.Gender %}
+							<input type="text" name="gender" id="patient_address" class="form-control" required
+								data-parsley-trigger="keyup" value="{{patient.Gender}}">
+
+								
+							
+							{% else %}
+								
+							<div class="form-group">
+								<select name="gender" id="patient_gender" class="form-control">
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
+							{% endif %}
+						</td>
+					</tr>
+
+					<tr>
+						<th class="text-right" width="30%">Maritial Status:</th>
+						<td>
+							
+							{% if patient.Maritial_Status %}
+								
+							<input type="text" name="maritialstatus" id="patient_maritial_status" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Maritial_Status}}" >
+							{% else %}
+							<div class="form-group">
+
+								<select name="maritialstatus" id="patient_maritial_status"
+									class="form-control">
+									<option value="Single">Single</option>
+									<option value="Married">Married</option>
+									<option value="Seperated">Seperated</option>
+									<option value="Divorced">Divorced</option>
+									<option value="Widowed">Widowed</option>
+								</select>
+							</div>
+							{% endif %}
+
+
+						</td>
+					</tr>
+
+				</table>
+				<div class="form-group text-center">
+					<button type="submit" class="btn btn-primary form-group text-center">Save</button>
+				</div>
+
+		</form>
+	</div>
+	<br />
+	<br />
+</div>
+
+
+
+</div>
+
+
+{% endblock content %}

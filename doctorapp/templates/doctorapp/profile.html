@@ -1,0 +1,102 @@
+{% extends 'doctorapp/base2.html' %}
+
+{% block content %}
+	
+
+	
+
+		  <div class="container text-dark">
+			<div class="card">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-6">
+							Profile Details
+						</div>
+						<div class="col-md-6 text-right">
+							<a href="{% url 'updatepatientprofile' pk=request.session.id %}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i>  Edit  </a>
+						</div>
+					</div>
+				</div>
+				<form action="" method="post">
+					{% csrf_token %}
+					
+						
+					
+						
+				<div class="card-body">
+					<table class="table table-striped">
+						
+						<tr>
+							<th class="text-right" width="40%">Patient Name:</th>
+							<td>
+								<input type="text" name="patient_first_name" id="patient_first_name" class="form-control" required data-parsley-trigger="keyup" value="{{patient.FirstName}} {{patient.LastName}}  " readonly>
+								<!-- <input type="text" name="patient_first_name" id="" class="form-control" value="{{user.Patient_First_Name}} {{user.Patient_Last_Name}}"" > -->
+							</td>
+						</tr>
+						
+						<tr>
+							<th class="text-right" width="40%">Email Address:</th>
+							<td>
+								<input type="text" name="patient_email_address" id="patient_email_address" class="form-control" required data-parsley-trigger="keyup" value="{{user.Email}}  " readonly>
+
+							</td>
+						</tr>
+						<tr>
+							<th class="text-right" width="40%">Password:</th>
+							<td>
+								<input type="text" name="patient_password" id="patient_password" class="form-control" required data-parsley-trigger="keyup" value="{{user.Password}}" readonly>
+
+							</td>
+						</tr>
+						<tr>
+							<th class="text-right" width="40%">Address:</th>
+							<td>
+								<input type="text" name="patient_address" id="patient_address" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Address}}" readonly>
+
+							</td>
+						</tr>
+						<tr>
+							<th class="text-right" width="40%">Contact No.:</th>
+							<td>
+								<input type="text" name="patient_phone_no" id="patient_phone_no" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Contact}}" readonly>
+
+							</td>
+						</tr>
+						<tr>
+							<th class="text-right" width="40%">Date of Birth:</th>
+							<td>
+								<input type="text" name="patient_date_of_birth" id="patient_date_of_birth" class="form-control" required data-parsley-trigger="keyup" value="{{patient.DateOfBirth}}" readonly>
+
+							</td>
+						</tr>
+						<tr>
+							<th class="text-right" width="40%">Gender:</th>
+							<td>
+								<input type="text" name="patient_gender" id="patient_gender" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Gender}}" readonly>
+
+							</td>
+						</tr>
+						
+						<tr>
+							<th class="text-right" width="40%">Maritial Status:</th>
+							<td>
+								<input type="text" name="patient_maritial_status" id="patient_maritial_status" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Maritial_Status}}" readonly>
+
+							</td>
+						</tr>
+							
+					</table>					
+				</div>
+			
+			</form>
+			</div>
+			<br />
+			<br />
+		  </div>
+		  
+		
+        	
+	    </div>
+		
+		
+		{% endblock content %}

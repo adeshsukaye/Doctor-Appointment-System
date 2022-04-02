@@ -1,0 +1,83 @@
+
+{% extends 'doctorapp/base2.html' %}
+
+
+{% block content %}
+	
+
+	
+		<br />
+		<div class="card">
+			<div class="card-header">
+				<h4>Doctor Schedule List</h4>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table  table-bordered" id="appointment_list_table">
+						<thead>
+							<tr>
+								<th>Doctor Name</th>
+								<th>Education</th>
+								<th>Speciality</th>
+								<th>Appointment Date</th>
+								<th>Start Time</th>
+								<th>End Time</th>
+								<th>Consulting Time</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						{% if doc %}
+						{% if all_list %}
+						<tbody>
+							{% for doctor in doc %}
+							{% for i in all_list  %}
+							<tr>
+							
+							
+							
+						
+							<td>{{doctor.FirstName}} {{doctor.LastName}}</td>
+							<td>{{doctor.Degree}}</td>
+							<td>{{doctor.ExpertIn}}</td>
+								
+						
+								
+								
+						
+								
+					
+							
+						
+							
+							
+								
+							
+								
+							<!-- <td>{{doctor.Doctor_First_Name}}</td> -->
+							<td>{{i.Doctor_Schedule_Date}}</td>
+							<td>{{i.Doctor_Schedule_Start_Time}}</td>
+							<td>{{i.Doctor_Schedule_End_Time}}</td>
+							<td>{{i.Average_Consulting_Time}}</td>
+							<td>
+								<form action="{% url 'applypage' pk=i.id %}" method="post">
+									{% csrf_token %}
+									<button type="submit"  class="form-control"><i class="fas fa-edit"></i>Book Appointment</button>
+								</form>
+							</td>
+						</tr>
+							
+
+						
+								
+						
+						</tbody>
+						{% endfor %}
+						{% endfor %}
+						{% endif %}
+								
+						{% endif %}
+					</table>
+				</div>
+			</div>
+		</div>
+		{% endblock content %}

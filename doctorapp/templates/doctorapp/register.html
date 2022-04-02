@@ -1,0 +1,116 @@
+{% extends 'doctorapp/base.html' %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col col-md-6">
+			<span id="message"></span>
+			<div class="card">
+				<div class="card-header">Registration </div>
+
+				{% if err %}
+
+				<div style="color: red;">
+					<h3>{{err}}</h3>
+				</div>
+				{% endif %}
+
+				<div class="card-body">
+					<form method="post" id="patient_register_form" action="{% url 'register' %}">
+                         {% csrf_token %}
+
+						
+							<div class="form-group ">
+								<label>Select Role <span class="text-danger">*</span></label>
+								<select name="role" id="" class="form-control">
+									<option >-------SELECT ROLE-------</option>
+									<option >Doctor</option>
+									<option >Patient</option>
+								  
+								</select>
+							</div>
+							
+					
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>First Name<span class="text-danger">*</span></label>
+									<input type="text" name="firstname" id="patient_first_name"
+										class="form-control" required data-parsley-trigger="keyup" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Last Name<span class="text-danger">*</span></label>
+									<input type="text" name="lastname" id="patient_last_name"
+										class="form-control" required data-parsley-trigger="keyup" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Email Address<span class="text-danger">*</span></label>
+							<input type="text" name="email" id="patient_email_address"
+								class="form-control" required autofocus data-parsley-type="email"
+								data-parsley-trigger="keyup" />
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Contact No.<span class="text-danger">*</span></label>
+									<input type="text" name="contact" id="patient_phone_no"
+										class="form-control" required data-parsley-trigger="keyup" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Patient Gender<span class="text-danger">*</span></label>
+									<select name="gender" id="patient_gender" class="form-control">
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label>Patient Complete Address<span class="text-danger">*</span></label>
+							<textarea name="address" id="patient_address" class="form-control" required
+								data-parsley-trigger="keyup"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Password<span class="text-danger">*</span></label>
+							<input type="password" name="password" id="patient_password" class="form-control"
+								required data-parsley-trigger="keyup" />
+						</div>
+						<div class="form-group">
+							<label>Confirm Password<span class="text-danger">*</span></label>
+							<input type="password" name="cpassword" id="patient_password"
+								class="form-control" required data-parsley-trigger="keyup" />
+						</div>
+						<div class="form-group text-center">
+							
+							<input type="submit" name="patient_register_button" id="patient_register_button"
+								class="btn btn-primary" value="Register" />
+						</div>
+						
+
+						<div class="form-group text-center">
+							<p><a href="{% url 'loginpage' %}">Login</a></p>
+						</div>
+					</form>
+				</div>
+			</div>
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}

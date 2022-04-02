@@ -1,0 +1,80 @@
+{% extends 'doctorapp/admin/base.html' %}
+
+{% block content %}
+
+
+
+<!-- End of Topbar -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Patient Management</h1>
+
+    <!-- DataTales Example -->
+    <span id="message"></span>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Patient List</h6>
+                </div>
+                <!-- <div class="col" align="right">
+                                     <button type="button" name="add_doctor" id="add_doctor" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></button>
+                                 </div> -->
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="doctor_table" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+
+
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Created_at</th>
+                            <th>is_active</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+
+                    {% if all_user %}
+
+
+
+                    <tbody>
+
+                        {% for i in all_user %}
+
+                      
+
+                        <tr>
+                            <td>{{i.Email}}</td>
+                            <td>{{i.Role}}</td>
+                            <td>{{i.is_created}}</td>
+                            <td>{{i.is_active}}</td>
+                            <td>
+                                <form action="{% url 'patientdelete' pk=i.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="form-control" value="Delete">Delete</button>
+                                </form>
+                            </td>
+                            
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+{% endblock content %}

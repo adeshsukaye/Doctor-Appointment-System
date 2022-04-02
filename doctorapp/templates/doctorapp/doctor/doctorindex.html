@@ -1,0 +1,94 @@
+{% extends 'doctorapp/doctor/base.html' %}
+
+{% block content %}
+    
+
+    
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                     <!-- /.container-fluid -->
+
+                  <!-- Page Heading -->
+                  <h1 class="h3 mb-4 text-gray-800">Doctor Schedule Management</h1>
+
+                  <!-- DataTales Example -->
+                  <span id="message"></span>
+                  <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                          <div class="row">
+                              <div class="col">
+                                  <h6 class="m-0 font-weight-bold text-primary">Doctor Schedule List</h6>
+                              </div>
+                              <div class="col" align="right">
+                                  <button type="button" name="add_exam" id="add_doctor_schedule" class="btn btn-success btn-circle btn-sm"> <a href="{% url 'addschudulepage' %}"><i class="fas fa-plus"></i></a></button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered" id="doctor_schedule_table" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                                                                                        
+                                          <th>Schedule Date</th>
+                                          <!-- <th>Schedule Day</th> -->
+                                          <th>Start Time</th>
+                                          <th>End Time</th>
+                                          <th>Consulting Time</th>
+                                          <th>Delete</th>
+                                         
+                                          <th>Action</th>
+                                      </tr>
+                                      
+                                  </thead>
+                                  
+                                  {% if all_list %}
+                                 
+                                      
+                                  <tbody>
+                                      
+                                      {% for i in all_list %}
+                                  
+                                          
+                                    <tr>
+                                                                          
+                                        <td>{{i.Doctor_Schedule_Date}}</td>
+                                        <td>{{i.Doctor_Schedule_Start_Time}}</td>
+                                        <td>{{i.Doctor_Schedule_End_Time}}</td>
+                                        <td>{{i.Average_Consulting_Time}}</td>
+                                        <td>
+                                            <form action="{% url 'scheduledelete' pk=i.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="submit" class="form-control" value="Delete">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{% url 'editschedulepage' pk=i.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="form-control"><i class="fas fa-edit"></i>Edit</button>
+                                            </form>
+
+
+                                        </td>
+                                        
+                                    </tr>
+                                            
+                                    {% endfor %}
+                                      
+                                  </tbody>
+                                  {% endif %}
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+
+                </div>
+               
+
+            </div>
+            <!-- End of Main Content -->
+            {% endblock content %}
+
+          

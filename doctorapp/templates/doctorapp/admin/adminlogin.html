@@ -1,0 +1,57 @@
+{% extends 'doctorapp/base.html' %}
+{% block content %}
+	
+
+		    
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-md-4">
+                        
+                        <span id="message"></span>
+                        <div class="card">
+                            <div class="card-header">Admin Login</div>
+
+                            <div class="card-body">
+                                
+                               
+                                    
+                                <form method="post" id="patient_login_form" autocomplete="off" action="{% url 'adminlogin' %}">
+                                    {% csrf_token %}
+                                    {% if msg %}
+                                    <div style="color: green;"></div>
+                                    <h3>{{msg}}</h3>
+                                    {% endif %}
+    
+                                    {% if err %}
+                                    <div style="color: red;"></div>
+                                    <h3>{{err}}</h3>
+                                        
+                                    {% endif %}
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" name="username" id="admin_email_address" class="form-control" required autofocus data-parsley-type="email" data-parsley-trigger="keyup" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" name="password" id="patient_password" autocomplete="current-password" class="form-control" required  data-parsley-trigger="keyup" />
+                                        <i class="far fa-eye" id="togglePassword" style="position: relative; left: 275px; top: -29px; cursor: pointer;"></i>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <input type="hidden" name="action" value="patient_login" />
+                                        <input type="submit" name="admin_login_button" id="admin_login_button" class="btn btn-primary" value="Login" />
+                                    </div>
+            
+                                    <!-- <div class="form-group text-center">
+                                        <p><a href="{% url 'registerpage' %}">Register</a></p>
+                                    </div> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div
+            scr
+
+			{% endblock content %}
+	    
+	

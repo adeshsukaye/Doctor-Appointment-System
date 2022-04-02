@@ -1,0 +1,160 @@
+{% extends 'doctorapp/doctor/base.html' %}
+
+{% block content %}
+
+
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- /.container-fluid -->
+
+    <!-- <div id="doctor_scheduleModal" class="modal fade">
+        <div class="modal-dialog">
+            
+        </div>
+    </div> -->
+    <form method="post" id="doctor_schedule_form" action="{% url 'editschedule' pk=schedule.id %}">
+        {% csrf_token %}
+        <div class="modal-content mb-4">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal_title">Edit Doctor Schedule</h4>
+            </div>
+            
+            {% if msg %}
+            <h2>{{msg}}</h2>
+                
+            {% endif %}
+                
+
+            <div class="modal-body">
+                <span id="form_message"></span>
+
+                <!-- <div class="form-group">
+                    <label>Select Doctor</label>
+                    <select name="doctor_id" id="doctor_id" class="form-control" required>
+                        <option value="">Select Doctor</option>
+
+                    </select>
+                </div> -->
+
+                <div class="form-group">
+                    <label>Schedule Date</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar"></i></span>
+                        </div>
+
+                        {% if schedule.Doctor_Schedule_Date %}
+                        <input type="text" name="doctor_schedule_date" id="doctor_schedule_date" class="form-control"
+                            min="2022-01-01" max="2022-12-31" value="{{schedule.Doctor_Schedule_Date}}" required />
+                            {% else %}
+                        <input type="date" name="doctor_schedule_date" id="doctor_schedule_date" class="form-control"
+                            min="2022-01-01" max="2022-12-31"  required />
+
+                        {% endif %}
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Start Time</label>
+                    <small> ((Start Time are 9am to 4pm))</small>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-clock"></i></span>
+                        </div>
+                        
+                        {% if schedule.Doctor_Schedule_Start_Time %}
+                        <input type="text" name="doctor_schedule_start_time" id="doctor_schedule_start_time"
+                            class="form-control datetimepicker-input" min="09:00" max="04:00" autocomplete="off"
+                            value="{{schedule.Doctor_Schedule_Start_Time}}" required />
+
+                            {% else %}
+                            <input type="time" name="doctor_schedule_start_time" id="doctor_schedule_start_time"
+                            class="form-control datetimepicker-input" min="09:00" max="16:00" autocomplete="off"
+                             required />
+
+                            
+                        {% endif %}
+                            
+                    
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>End Time</label>
+                    <small> ((End Time are 9:15am to 5pm))</small>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-clock"></i></span>
+                        </div>
+                        
+                        {% if schedule.Doctor_Schedule_End_Time %}
+                        <input type="text" name="doctor_schedule_end_time" id="doctor_schedule_end_time"
+                            class="form-control datetimepicker-input" min="9:15" max="17:00" autocomplete="off"
+                            value="{{schedule.Doctor_Schedule_End_Time}}" aria-required="true" />
+
+                        {% else %}
+                        <input type="time" name="doctor_schedule_end_time" id="doctor_schedule_end_time"
+                            class="form-control datetimepicker-input" min="9:15" max="17:00" autocomplete="off"
+                            aria-required="true" />
+                            
+                        {% endif %}
+                            
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Average Consulting Time</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-clock"></i></span>
+                        </div>
+                        
+                        {% if schedule.Average_Consulting_Time %}
+                        <input type="text" name="average_consulting_time" id="average_consulting_time"
+                            class="form-control datetimepicker-input" autocomplete="off"
+                            value="{{schedule.Average_Consulting_Time}}" aria-required="true" />
+
+                            {% else %}
+                            <select name="average_consulting_time" id="average_consulting_time" class="form-control"
+                            required>
+                           <option value="">Select Consulting Duration</option>
+                           <option value="15 Minute">15 Minute</option>
+                           <option value="30 Minute">30 Minute</option>
+                           <option value="45 Minute">45 Minute</option>
+                           <option value="1 Hour">1 Hour </option>
+                           <option value="1 Hour and 30 Minute">1 Hour and 30 Minute</option>
+                           <option value="2 Hour">2 Hour</option>
+                        </select>
+
+                            
+                        {% endif %}
+                            
+                       
+
+
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" name="hidden_id" id="hidden_id" />
+                <input type="hidden" name="action" id="action" value="Add" />
+                <input type="submit" name="submit" id="submit_button" class="btn btn-success" value="Save" />
+                
+                <a class="nav-link" href="{% url 'schedulelist' %}"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></a>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>
+
+
+</div>
+<!-- End of Main Content -->
+
+{% endblock content %}

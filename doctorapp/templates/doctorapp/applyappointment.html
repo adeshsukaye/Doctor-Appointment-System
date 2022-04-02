@@ -1,0 +1,253 @@
+{% extends 'doctorapp/base2.html' %}
+
+{% block content %}
+	
+
+	
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col col-md-12">
+			<span id="message"></span>
+			<div class="card">
+				<div class="card-header"><h2>Book Appointment</h2> </div>
+				
+				{% if msg %}
+				<h3 class="text-center text-primary">{{msg}}</h3>
+					
+				{% endif %}
+					
+				
+
+				
+				{% if user %} 
+				{% if patient %}
+				
+				{% if schedule %}					
+
+				<div class="card-body">
+					<form method="post" id="patient_register_form" action="{% url 'applyappointment' pk=schedule.id %}">
+						{% csrf_token %}
+						<h3 class="text-center md-5">Patient Information</h3>
+						<hr>
+
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>First Name<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_first_name" id="patient_first_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{patient.FirstName}}" readonly />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Last Name<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_last_name" id="patient_last_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{patient.LastName}}" readonly />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Email Address<span class="text-danger">*</span></label>
+									<input type="email" name="doctor_email_address" id="patient_email_address"
+										class="form-control" required  data-parsley-type="email"
+										data-parsley-trigger="keyup" value="{{request.session.Email}}" readonly/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Contact No.<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_phone_no" id="patient_phone_no" class="form-control"
+										required data-parsley-trigger="keyup" value="{{patient.Contact}}" readonly/>
+								</div>
+							</div>
+							<div class="col-md-4">
+
+								<div class="form-group">
+									<label>Gender<span class="text-danger">*</span></label>
+								
+									<input type="text" name="doctor_gender" id="doctor_gender" class="form-control"
+										required data-parsley-trigger="keyup" value="{{patient.Gender}}" readonly />
+
+
+                                   
+								</div>
+							
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Date of Birth<span class="text-danger">*</span></label>
+									<input type="text" name="dob" id="patient_date_of_birth"
+										class="form-control" required data-parsley-trigger="keyup" value="{{patient.DateOfBirth}}" readonly/>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Reason For Appoinment<span class="text-danger">*</span></label>
+									<input type="text" name="reason" id="doctor_maritial_status" class="form-control"
+										required data-parsley-trigger="keyup" value=""/>
+							
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Patient Come In Hospital<span class="text-danger">*</span></label>
+									<!-- <input type="text" name="pcih" id="doctor_maritial_status" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Maritial_Status}}"/> -->
+										<select name="pcih" id="" class="form-control">
+											<option >---------- Select ----------</option>
+											<option value="Yes">Yes</option>
+											<option value="No">No</option>
+										</select>
+							
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Address<span class="text-danger">*</span></label>
+									<input type="text" name="status" id="doctor_maritial_status" class="form-control"
+										required data-parsley-trigger="keyup" value="{{patient.Address}}" />
+							
+								</div>
+							</div>
+						</div>
+						<hr>
+						<h3 class="text-center md-5">Schedule Time</h3>
+						<hr>
+						<div class="row">
+							
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Doctor Schedule Date<span class="text-danger">*</span></label>
+									<input type="text" name="appointment_date" id="doctor_maritial_status" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Schedule_Date}}" readonly/>
+							
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Doctor Schedule Start Time<span class="text-danger">*</span></label>
+									<input type="text" name="appointment_start_time" id="appointment_start_time" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Schedule_Start_Time}}" readonly/>
+							
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Doctor Schedule End Time<span class="text-danger">*</span></label>
+									<input type="text" name="appointment_end_time" id="doctor_schedule_end_time" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Schedule_End_Time}}" readonly/>
+							
+								</div>
+							</div>
+						</div>
+						<hr>
+						<h3 class="text-center md-5">Doctor Information</h3>
+						
+					
+							
+						
+							
+						<hr>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>First Name<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_first_name" id="patient_first_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{schedule.Doctor_Id.FirstName}}" readonly />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Last Name<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_last_name" id="patient_last_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{schedule.Doctor_Id.LastName}}" readonly />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Email Address<span class="text-danger">*</span></label>
+									<input type="email" name="doctor_email_address" id="patient_email_address"
+										class="form-control" required  data-parsley-type="email"
+										data-parsley-trigger="keyup" value="{{schedule.Doctor_Id.user_id.Email}}" readonly/>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Doctor Degree<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_degree" id="doctor_degree" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Id.Degree}}"readonly />
+								
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Doctor Expert In<span class="text-danger">*</span></label>
+									<input type="text" name="doctor_expert_in" id="doctor_expert_in" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Id.ExpertIn}}" readonly/>
+								
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Contact<span class="text-danger">*</span></label>
+									<input type="text" name="experience" id="doctor_expert_in" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Id.Contact}}" readonly/>
+								
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Complete Address<span class="text-danger">*</span></label>
+							
+								<input type="text" name="doctor_address" id="doctor_address" class="form-control"
+										required data-parsley-trigger="keyup" value="{{schedule.Doctor_Id.Address}}" readonly/>
+						</div>
+						<div class="form-group text-center">
+							<input type="hidden" name="action" value="edit_profile" />
+							<input type="submit" name="edit_profile_button" id="edit_profile_button" class="btn btn-primary" value="Confirm Appointment" />
+						</div>
+					
+						
+
+					
+
+
+					</form>
+				
+					
+					
+				{% endif %}
+					
+					
+				{% endif %}
+					
+				{% endif %}
+				</div>
+			</div>
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+
+
+		
+		
+		{% endblock content %}

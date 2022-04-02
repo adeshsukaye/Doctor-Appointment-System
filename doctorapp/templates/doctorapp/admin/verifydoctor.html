@@ -1,0 +1,55 @@
+{% extends 'doctorapp/admin/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-6">
+					Update Company Details
+				</div>
+				
+			</div>
+		</div>
+		<form action="{% url 'adminupdatedoctorprofile' pk=request.session.id %}" method="post">
+            	{% csrf_token %}
+
+			<div class="card-body">
+				<table class="table table-striped">			
+					
+					<tr>
+						<th class="text-right" width="40%">Verification</th>
+						<td>
+							<!-- <input type="text" name="patient_gender" id="patient_gender" class="form-control" required data-parsley-trigger="keyup" value="{{patient.Patient_Gender}}" > -->
+							<div class="form-group">
+								<select name="verify" id="" class="form-control">
+                                    <option >==Select Option===</option>
+                              
+                                    <option >True</option>
+                                    <option >False</option>
+                                  
+                                </select>
+							</div>
+						</td>
+					</tr>
+
+					
+
+				</table>
+				<div class="form-group text-center">
+					<button type="submit" class="btn btn-primary form-group text-center">Save</button>
+				</div>
+
+		</form>
+	</div>
+	<br />
+	<br />
+</div>
+
+
+
+</div>
+
+    
+{% endblock content %}
+    

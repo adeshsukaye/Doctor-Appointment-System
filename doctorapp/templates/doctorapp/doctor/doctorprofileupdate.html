@@ -1,0 +1,205 @@
+{% extends 'doctorapp/doctor/base.html' %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col col-md-8">
+			<span id="message"></span>
+			<div class="card">
+				<div class="card-header">Doctor Update Profile <span style="padding-left:315px;"
+						class="col-md-6 text-right " align="right">
+					</span></div>
+
+
+
+
+
+				<div class="card-body">
+					<form method="post" id="patient_register_form" action="{% url 'updatedoctor' pk=request.session.id %}">
+						{% csrf_token %}
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>First Name<span class="text-danger">*</span></label>
+									<input type="text" name="firstname" id="patient_first_name"
+										class="form-control" required autofocus data-parsley-trigger="keyup"
+										value="{{doctor.FirstName}}" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Last Name<span class="text-danger">*</span></label>
+									<input type="text" name="lastname" id="patient_last_name"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.LastName}}" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Email Address<span class="text-danger">*</span></label>
+							<input type="email" name="email" id="patient_email_address"
+								class="form-control" required data-parsley-type="email" data-parsley-trigger="keyup"
+								value="{{user.Email}}" />
+						</div>
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Contact No.<span class="text-danger">*</span></label>
+									<input type="text" name="contact" id="patient_phone_no" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Contact}}" />
+								</div>
+							</div>
+							<div class="col-md-6">
+
+								<div class="form-group">
+									<label>Gender<span class="text-danger">*</span></label>
+									{% if doctor.Gender %}
+									<input type="text" name="gender" id="doctor_gender" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Gender}}" />
+
+
+									{% else %}
+									<select name="gender" id="patient_gender" class="form-control">
+										<option value="none">--------select---------</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+										<option value="Other">Other</option>
+									</select>
+									{% endif %}
+								</div>
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Date of Birth<span class="text-danger">*</span></label>
+
+									{% if doctor.DateOfBirth %}
+									<input type="text" name="dob" id="patient_date_of_birth"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.DateOfBirth}}" placeholder="YYYY-MM-DD" />
+
+									{% else %}
+									<input type="date" name="dob" id="patient_date_of_birth"
+										class="form-control" required data-parsley-trigger="keyup" />
+										{% endif %}
+								</div>
+								
+
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Maritial Status<span class="text-danger">*</span></label>
+
+									{% if doctor.Maritial_Status %}
+									<input type="text" name="maritialstatus" id="doctor_maritial_status"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.Maritial_Status}}" />
+
+
+									{% else %}
+									<select name="maritialstatus" id="patient_maritial_status"
+										class="form-control">
+										<option>--------select---------</option>
+										<option value="Single">Single</option>
+										<option value="Married">Married</option>
+										<option value="Seperated">Seperated</option>
+										<option value="Divorced">Divorced</option>
+										<option value="Widowed">Widowed</option>
+									</select>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Doctor Degree<span class="text-danger">*</span></label>
+
+									{% if doctor.Degree %}
+									<input type="text" name="degree" id="doctor_degree" class="form-control"
+										required data-parsley-trigger="keyup" value="{{doctor.Degree}}" />
+
+
+									{% else %}
+									<select name="degree" id="degree" class="form-control">
+										<option>--------select---------</option>
+										<option value="MBBS">MBBS</option>
+										<option value="MD">MD</option>
+										<option value="BDS">BDS</option>
+										<option value="BAMS">BAMS</option>
+										<option value="BUMS">BUMS</option>
+										<option value="BHMS ">BHMS </option>
+									</select>
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Doctor Expert In<span class="text-danger">*</span></label>
+
+									{% if doctor.ExpertIn %}
+									<input type="text" name="expertin" id="doctor_expert_in"
+										class="form-control" required data-parsley-trigger="keyup"
+										value="{{doctor.ExpertIn}}" />
+									{% else %}
+
+									<select name="expertin" id="expertin" class="form-control">
+										<option>--------select---------</option>
+										<option value="Cardiologist">Cardiologist</option>
+										<option value="Audiologist">Audiologist</option>
+										<option value="Dentist">Dentist</option>
+										<option value="ENT specialist">ENT specialist</option>
+										<option value="Gynaecologist">Gynaecologist</option>
+										<option value="Orthopaedic surgeon">Orthopaedic surgeon</option>
+										<option value="Paediatrician">Paediatrician</option>
+										<option value="Psychiatrists">Psychiatrists</option>
+										<option value="Veterinarian">Veterinarian</option>
+										<option value="Radiologist">Radiologist</option>
+										<option value="Neurologist">Neurologist</option>
+										<option value="Cardiothoracic surgeon">Cardiothoracic surgeon</option>
+									</select>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Complete Address<span class="text-danger">*</span></label>
+							<input type="text" name="address" id="address" class="form-control" required
+								data-parsley-trigger="keyup" value="{{doctor.Address}}" />
+						</div>
+						<div class="form-group">
+							<label>Password<span class="text-danger">*</span></label>
+							<input type="text" name="password" id="patient_password" class="form-control"
+								required data-parsley-trigger="keyup" value="{{user.Password}}" />
+								<i class="far fa-eye" id="togglePassword" style="position: relative; left: 610px; top: -29px; cursor: pointer;"></i>
+
+						</div>
+						<br>
+						<div class="form-group text-center">
+							<button type="submit" class="btn btn-primary form-group text-center">Save</button>
+						</div>
+
+
+
+
+					</form>
+				</div>
+			</div>
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}
